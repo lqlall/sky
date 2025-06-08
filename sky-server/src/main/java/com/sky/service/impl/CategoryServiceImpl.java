@@ -66,4 +66,20 @@ public class CategoryServiceImpl implements CategoryService {
        log.info("修改分类状态：{}", category);
        categoryMapper.update(category);
     }
+
+    /**
+     * 修改分类
+     * @param categoryDTO
+     */
+    public void update(CategoryDTO categoryDTO) {
+        Category  category = Category.builder()
+                .id(categoryDTO.getId())
+                .type(categoryDTO.getType())
+                .sort(categoryDTO.getSort())
+                .name(categoryDTO.getName())
+                .build();
+        category.setUpdateTime(LocalDateTime.now());
+        category.setUpdateUser(BaseContext.getCurrentId());
+        categoryMapper.update(category);
+    }
 }
