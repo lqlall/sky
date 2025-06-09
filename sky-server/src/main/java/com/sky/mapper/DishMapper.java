@@ -39,11 +39,11 @@ public interface DishMapper {
     Page<DishVO> pageQuery(DishPageQueryDTO dishPageQueryDTO);
 
     /**
-     * 根据id查询菜品
+     * 根据id查询菜品状态
      * @param ids
      * @return
      */
-    List<Integer> getByIds(List<Long> ids);
+    List<Integer> getStatusByIds(List<Long> ids);
 
     /**
      * 批量删除菜品

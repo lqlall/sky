@@ -69,13 +69,13 @@ public class DishServiceImpl implements DishService {
     }
 
     /**
-     *
+     *根据id删除菜品和口味
      * @param ids
      */
     @Transactional(rollbackFor = {Exception.class})
     public void deleteBatch(List<Long> ids) {
-        List<Integer> dishList = dishMapper.getByIds(ids);
-        for (Integer i : dishList) {
+        List<Integer> dishStatusList = dishMapper.getStatusByIds(ids);
+        for (Integer i : dishStatusList) {
             if (i == StatusConstant.ENABLE) {
                 throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
             }
