@@ -70,4 +70,12 @@ public interface SetmealMapper {
      * @param ids
      */
     void deleteBatch(List<Long> ids);
+
+    /**
+     * 根据条件查询套餐数据
+     * @param setmeal
+     * @return
+     */
+    @Select("select * from setmeal where status = #{status} and category_id = #{categoryId}")
+    List<Setmeal> list(Setmeal setmeal);
 }

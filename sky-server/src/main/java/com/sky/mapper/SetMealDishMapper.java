@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import com.sky.entity.SetmealDish;
+import com.sky.vo.DishItemVO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -43,4 +44,13 @@ public interface SetMealDishMapper {
      * @param ids
      */
     void deleteBySetmealIds(List<Long> ids);
+
+    /**
+     * 根据套餐id查询包含的菜品列表，并且每个菜品列出了当前套餐这个菜品的版本号
+     * @param id
+     * @return
+     */
+    @Select("select  sd.name , sd.copies, d.image, d.description from" +
+            " setmeal_dish sd , dish d where sd.dish_id = d.id and sd.setmeal_id = #{id}")
+    List<DishItemVO> getDishItemById(Long id);
 }
